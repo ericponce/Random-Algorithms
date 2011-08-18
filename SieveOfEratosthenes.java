@@ -4,8 +4,8 @@
  */
 package sieveoferatosthenes;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 /**
    Produces a list of primes all the way up to desired limit (inclusive).
@@ -16,11 +16,15 @@ public class SieveOfEratosthenes {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        System.out.print("Primes up to: ");
-        Scanner in = new Scanner(System.in);
-        
-        int limit = in.nextInt();
+    
+    /**
+     * Produces a list of prime number up to and possibly including the limit.
+     * @param limit highest possible number in list
+     * @return Integer ArrayList containing Sieve List.
+     */
+    public static ArrayList<Integer> sieveList(int limit) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        list.add(2);
         boolean [] primes = new boolean[limit + 1];
         Arrays.fill(primes, true);
         
@@ -29,6 +33,7 @@ public class SieveOfEratosthenes {
         
         while (current <= limit) {
             if (primes[current] == true) {
+                list.add(current);
                 t += current;
                 while (t <= limit) {
                     primes[t] = false;
@@ -38,13 +43,6 @@ public class SieveOfEratosthenes {
             current += 2;
             t = current;  
         }
-        
-        t = 3;
-        System.out.println("2");
-        while (t <= limit) {
-            if (primes[t] == true) System.out.println(t);
-            t += 2;
-        }
-        
+        return list;        
     }
 }
