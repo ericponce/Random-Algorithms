@@ -2,20 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package sieveoferatosthenes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
-   Produces a list of primes all the way up to desired limit (inclusive).
+ * The sieve of eratosthenes is a method for getting a list fo primes all 
+ * the way up to a certain number.
+ * 
  * @author Eric
  */
 public class SieveOfEratosthenes {
-
-    /**
-     * @param args the command line arguments
-     */
     
     /**
      * Produces a list of prime number up to and possibly including the limit.
@@ -28,20 +25,20 @@ public class SieveOfEratosthenes {
         boolean [] primes = new boolean[limit + 1];
         Arrays.fill(primes, true);
         
-        int current = 3;
+        int currentPrime = 3;
         int t = 3;
         
-        while (current <= limit) {
-            if (primes[current] == true) {
-                list.add(current);
-                t += current;
+        while (currentPrime <= limit) {
+            if (primes[currentPrime] == true) {
+                list.add(currentPrime);
+                t += currentPrime;
                 while (t <= limit) {
                     primes[t] = false;
-                    t += current;        
+                    t += currentPrime;        
                 }
             }
-            current += 2;
-            t = current;  
+            currentPrime += 2;
+            t = currentPrime;  
         }
         return list;        
     }
