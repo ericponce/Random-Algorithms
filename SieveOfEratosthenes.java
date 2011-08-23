@@ -1,10 +1,16 @@
+<<<<<<< HEAD
+=======
+package com.Eric;
+
+>>>>>>> added sums
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
- * The sieve of eratosthenes is a method for getting a list fo primes all 
- * the way up to a certain number.
- * 
+   Produces a list of primes all the way up to desired limit (inclusive).
  * @author Eric
  */
 public class SieveOfEratosthenes {
@@ -20,21 +26,31 @@ public class SieveOfEratosthenes {
         boolean [] primes = new boolean[limit + 1];
         Arrays.fill(primes, true);
         
-        int currentPrime = 3;
+        int current = 3;
         int t = 3;
         
-        while (currentPrime <= limit) {
-            if (primes[currentPrime] == true) {
-                list.add(currentPrime);
-                t += currentPrime;
+        while (current <= limit) {
+            if (primes[current] == true) {
+                list.add(current);
+                t += current;
                 while (t <= limit) {
                     primes[t] = false;
-                    t += currentPrime;        
+                    t += current;        
                 }
             }
-            currentPrime += 2;
-            t = currentPrime;  
+            current += 2;
+            t = current;  
         }
         return list;        
+    }
+    
+    public static int sumOfPrimes(int limit) {
+        LinkedList<Integer> primes = new LinkedList<Integer>(sieveList(limit));
+        Iterator<Integer> iterator = primes.iterator();
+        int sum = 0;
+        while (iterator.hasNext()) {
+            sum += iterator.next();
+        }
+        return sum;
     }
 }
