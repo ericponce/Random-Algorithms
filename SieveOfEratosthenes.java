@@ -1,13 +1,9 @@
-<<<<<<< HEAD
-=======
 package com.Eric;
 
->>>>>>> added sums
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.ListIterator;
 
 /**
    Produces a list of primes all the way up to desired limit (inclusive).
@@ -44,6 +40,11 @@ public class SieveOfEratosthenes {
         return list;        
     }
     
+    /**
+     * Produces the sum of all the primes up to and including the limit
+     * @param limit highest possible number added to sum
+     * @return sum of primes up to limit
+     */
     public static int sumOfPrimes(int limit) {
         LinkedList<Integer> primes = new LinkedList<Integer>(sieveList(limit));
         Iterator<Integer> iterator = primes.iterator();
