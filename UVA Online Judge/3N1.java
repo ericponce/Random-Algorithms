@@ -3,11 +3,7 @@ import java.util.Scanner;
  * Solves the 3N + 1 problem on the UVA online judge. Includes input/output code for solving
  * @author Eric Ponce
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
+public class 3N1 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int i, j, max;
