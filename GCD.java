@@ -1,9 +1,10 @@
 
 /**
  * Solves for the Greatest common devisor recursively and extremely fast.
+ * Uses the Euclidean Algorith for GCD.
  * @author Eric Ponce
  */
-public class Main {
+public class GCD {
     
     public static int GCD(int i, int j) {
         if (i == 0) return j;
