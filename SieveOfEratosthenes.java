@@ -2,8 +2,6 @@ package com.Eric;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
 
 /**
    Produces a list of primes all the way up to desired limit (inclusive).
@@ -45,13 +43,39 @@ public class SieveOfEratosthenes {
      * @param limit highest possible number added to sum
      * @return sum of primes up to limit
      */
-    public static int sumOfPrimes(int limit) {
-        LinkedList<Integer> primes = new LinkedList<Integer>(sieveList(limit));
-        Iterator<Integer> iterator = primes.iterator();
-        int sum = 0;
-        while (iterator.hasNext()) {
-            sum += iterator.next();
+    public static long sumOfPrimes(int limit) {
+        ArrayList<Integer> primes = sieveList(limit);
+        long sum = 0;
+        for (int e : primes) {
+            sum += e;
         }
         return sum;
+    }
+    
+    public static int numberOfFactors(int n) {
+        Object [] primes = sieveList(n).toArray();
+        int factorCount = 1, currentPrime = 0, temp = 0, a = 0;
+        int [] primeFactors = new int[n];
+        Arrays.fill(primeFactors, 0);
+        while (n != 1) {
+            
+            a = (int) primes[currentPrime];
+            if (n % a == 0) {
+                n /= a;
+                primeFactors[a]++;
+                temp ++;
+            } else {
+                factorCount *= primeFactors[a] + 1;
+                temp = 0;
+                currentPrime++;
+            }
+            
+            
+        }
+        
+        factorCount *= primeFactors[a] + 1;
+        
+        return factorCount;
+        
     }
 }
