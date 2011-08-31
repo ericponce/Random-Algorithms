@@ -52,30 +52,32 @@ public class SieveOfEratosthenes {
         return sum;
     }
     
-    public static int numberOfFactors(int n) {
-        Object [] primes = sieveList(n).toArray();
-        int factorCount = 1, currentPrime = 0, temp = 0, a = 0;
-        int [] primeFactors = new int[n];
-        Arrays.fill(primeFactors, 0);
+    /**
+     * Counts the number of prime and non-prime divisors in a number using a modified form of trial and division.
+     * Generates a list of primes, gets the prime factors, and multiplies the exponents, which are added one.
+     * So, for example, for the number 8, the prime factors are 2^3. From there, we add one to each exponent, so (3 + 1).
+     * Then multiply by each other: (3 + 1) * 1 = 4.
+     * @param n
+     * @return 
+     */
+    public static long numberOfFactors(long n) {
+        ArrayList<Integer> primes = sieveList((int)Math.sqrt(n) * 2);
+        long factorCount = 1, a = 0;
+        int currentPrime = 0;
+        long exp = 0;
         while (n != 1) {
-            
-            a = (int) primes[currentPrime];
+            a = (long) primes.get(currentPrime);
             if (n % a == 0) {
                 n /= a;
-                primeFactors[a]++;
-                temp ++;
+                exp++;
             } else {
-                factorCount *= primeFactors[a] + 1;
-                temp = 0;
+                factorCount *= exp + 1;
                 currentPrime++;
+                exp = 0;
             }
-            
-            
         }
-        
-        factorCount *= primeFactors[a] + 1;
-        
+
+        factorCount *= exp + 1;
         return factorCount;
-        
     }
 }
