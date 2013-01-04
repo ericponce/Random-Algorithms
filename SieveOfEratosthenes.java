@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
-   Produces a list of primes all the way up to desired limit (inclusive).
- * @author Eric
+   Produces a list of primes all the way up to desired limit (inclusive). Also, provides useful functions that use a sieve.
+ * @author Eric Ponce
  */
 public class SieveOfEratosthenes {
     
     /**
-     * Produces a list of prime number up to and possibly including the limit.
+     * Produces a list of prime numbers up to and possibly including the limit.
      * @param limit highest possible number in list
-     * @return Integer ArrayList containing Sieve List.
+     * @return Integer Array containing Sieve List.
      */
-    public static ArrayList<Integer> sieveList(int limit) {
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        list.add(2);
+    public static int [] sieveList(int limit) {
+        int [] list = new int[limit + 1];
+        list[0] = 2;
+        int count = 1;
         boolean [] primes = new boolean[limit + 1];
         Arrays.fill(primes, true);
         
@@ -24,8 +25,9 @@ public class SieveOfEratosthenes {
         int t = 3;
         
         while (current <= limit) {
-            if (primes[current] == true) {
-                list.add(current);
+            if (primes[current]) {
+                list[count] = current;
+                count++;
                 t += current;
                 while (t <= limit) {
                     primes[t] = false;
@@ -35,7 +37,20 @@ public class SieveOfEratosthenes {
             current += 2;
             t = current;  
         }
-        return list;        
+        return trim(newArr, count); 
+    }
+    
+    /**
+     * Trims array to desired length
+     * @param arr Array to be trim
+     * @param length length of trimmed array
+     * @return trimmed array
+     * 
+     */
+    private static int [] trim(int [] arr, int length) {
+       int [] newArr = new int[length];
+       System.arraycopy(arr, 0, newArr, 0, length);
+       return newArr;
     }
     
     /**
