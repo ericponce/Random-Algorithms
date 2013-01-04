@@ -37,7 +37,7 @@ public class SieveOfEratosthenes {
             current += 2;
             t = current;  
         }
-        return trim(newArr, count); 
+        return trim(list, count); 
     }
     
     /**
